@@ -1,0 +1,54 @@
+{
+  "env": {
+    "client": {
+      "presets": [
+        "react",
+        [
+          "env",
+          {
+            "targets": {
+              "browsers": [
+                "> 1%",
+                "last 2 versions"
+              ]
+            }
+          }
+        ]
+      ],
+      "plugins": [
+        "react-hot-loader/babel",
+        "transform-class-properties",
+        "transform-export-extensions",
+        "transform-object-rest-spread",
+        "syntax-dynamic-import",
+        ["import-inspector", {
+          "serverSideRequirePath": true,
+          "webpackRequireWeakId": true
+        }]
+      ]
+    },
+    "server": {
+      "presets": [
+        "react",
+        [
+          "env",
+          {
+            "targets": {
+              "node": "10.2.1"
+            }
+          }
+        ]
+      ],
+      "plugins": [
+        "transform-class-properties",
+        "transform-export-extensions",
+        "transform-object-rest-spread",
+        "syntax-dynamic-import",
+        ["import-inspector", {
+          "serverSideRequirePath": true,
+          "webpackRequireWeakId": true
+        }]
+      ]
+    }
+  }
+}
