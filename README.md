@@ -1,5 +1,5 @@
 ### react同构直出方案
-
+@(Tech)[React技术栈]
 #### 同构直出的好处
 1. SEO，让搜索引擎更容易读取页面内容
 2. 首屏渲染速度更快（重点），无需等待js文件下载执行的过程
@@ -395,3 +395,6 @@ nodemon ./server/server.dev.js --watch server --watch tools
 
 ##### 日志记录
 TODO
+
+#### 参考链接
+[教你如何搭建一个超完美的服务端渲染开发环境](https://www.jianshu.com/p/0ecd727107bb)
