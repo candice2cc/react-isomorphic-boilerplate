@@ -3,12 +3,12 @@
  * @date 2018/6/6 18:10
  */
 // Provide custom regenerator runtime and core-js
-require('babel-polyfill');
+require('@babel/polyfill');
 // // Node babel source map support
 require('source-map-support').install();
 
 // Javascript require hook
-require('babel-register')();
+require('@babel/register')();
 // Css require hook
 require('css-modules-require-hook')({
   extensions: ['.scss'],
@@ -53,6 +53,7 @@ compiler.plugin('emit', (compilation, callback) => {
       file = path.resolve(__dirname,key);
       data = assets[key].source();
       fs.writeFileSync(file, data);
+
     }
   });
   callback();
@@ -71,13 +72,6 @@ app.use(webpackHotMiddleware(compiler, {
 app.set('views', path.resolve(__dirname, '../dist/server'));
 app.engine('.hbs', exphbs({
   extname: '.hbs',
-  // helpers: {
-  //   section: function (name, options) {
-  //     if (!this._sections) this._sections = {};
-  //     this._sections[name] = options.fn(this);
-  //     return null;
-  //   },
-  // },
 }));
 app.set('view engine', '.hbs');
 

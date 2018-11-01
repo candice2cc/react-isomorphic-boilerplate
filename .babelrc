@@ -2,9 +2,9 @@
   "env": {
     "client": {
       "presets": [
-        "react",
+        "@babel/preset-react",
         [
-          "env",
+          "@babel/preset-env",
           {
             "targets": {
               "browsers": [
@@ -17,21 +17,21 @@
       ],
       "plugins": [
         "react-hot-loader/babel",
-        "transform-class-properties",
-        "transform-export-extensions",
-        "transform-object-rest-spread",
-        "syntax-dynamic-import",
-        ["import-inspector", {
-          "serverSideRequirePath": true,
-          "webpackRequireWeakId": true
-        }]
+//        "transform-class-properties",
+//        "transform-export-extensions",
+//        "transform-object-rest-spread",
+//        "syntax-dynamic-import",
+//        ["import-inspector", {
+//          "serverSideRequirePath": true,
+//          "webpackRequireWeakId": true
+//        }]
       ]
     },
     "server": {
       "presets": [
-        "react",
+        "@babel/preset-react",
         [
-          "env",
+          "@babel/preset-env",
           {
             "targets": {
               "node": "10.2.1"
@@ -40,14 +40,14 @@
         ]
       ],
       "plugins": [
-        "transform-class-properties",
-        "transform-export-extensions",
-        "transform-object-rest-spread",
-        "syntax-dynamic-import",
-        ["import-inspector", {
-          "serverSideRequirePath": true,
-          "webpackRequireWeakId": true
-        }]
+//        "transform-class-properties",
+//        "transform-export-extensions",
+//        "transform-object-rest-spread",
+//        "syntax-dynamic-import",
+//        ["import-inspector", {
+//          "serverSideRequirePath": true,
+//          "webpackRequireWeakId": true
+//        }]
       ]
     }
   }

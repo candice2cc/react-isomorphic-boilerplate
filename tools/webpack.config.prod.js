@@ -7,20 +7,21 @@
 const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 
 
-const extractSass = new ExtractTextPlugin({
-  filename: 'css/[name].[contenthash:8].css',
-  allChunks: true,
-});
+// const extractSass = new ExtractTextPlugin({
+//   filename: 'css/[name].[contenthash:8].css',
+//   allChunks: true,
+// });
 
 module.exports = [
   {
+    mode: 'production',
     name: 'client',
     context: path.resolve(__dirname, '..'),
     entry: {
@@ -45,33 +46,32 @@ module.exports = [
           use: {
             loader: 'babel-loader',
             options: {
-              forceEnv: 'client',
+              envName: 'client',
             }
           },
         },
         {
           test: /\.scss$/,
-          use: extractSass.extract({
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  modules: true,
-                  importLoaders: 1,
-                  localIdentName: '[name]__[local]___[hash:base64:5]',
+          use: [
+            {
+              loader: 'style-loader', // creates style nodes from JS strings
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                importLoaders: 1,
+                localIdentName: '[name]__[local]___[hash:base64:5]',
 
-                },
               },
-              {
-                loader: 'postcss-loader',
-              },
-              {
-                loader: 'sass-loader',
-              },
-            ],
-            // use style-loader in development
-            fallback: 'style-loader',
-          }),
+            },
+            {
+              loader: 'postcss-loader',
+            },
+            {
+              loader: 'sass-loader',
+            },
+          ],
         },
         {
           test: /\.(png|svg|jpg|jpeg|gif)$/,
@@ -126,27 +126,17 @@ module.exports = [
       extensions: ['.js', '.json', '.scss'],
     },
     plugins: [
-      extractSass,
+      new MiniCssExtractPlugin({
+        filename: 'css/[name].[contenthash:8].css',
+        chunkFilename: 'css/chunk.[name].[contenthash:8].css'
+      }),
+      new OptimizeCSSAssetsPlugin(),
       new CleanWebpackPlugin([path.resolve(__dirname, '../dist/client')], {root: path.join(__dirname, '../')}),
       // generate manifest.json
       new ManifestPlugin(),
 
       // use NamedModulesPlugin in during development for more readable output
       new webpack.HashedModuleIdsPlugin(),
-      new UglifyJSPlugin({
-        uglifyOptions: {
-          compress: {
-            warnings: false,
-            drop_debugger: true,
-            drop_console: true,
-          },
-        },
-      }),
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify('production')
-        },
-      }),
       new HtmlWebpackPlugin({
         filename: path.resolve(__dirname, '../dist/server/homeProd.hbs'),
         template: './server/views/home.hbs',
@@ -154,14 +144,8 @@ module.exports = [
         hash: false,
 
       }),
+    ],
 
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-      }),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'runtime',
-      }),
-    ]
 
   },
   {
@@ -191,7 +175,7 @@ module.exports = [
           use: {
             loader: 'babel-loader',
             options: {
-              forceEnv: 'server',
+              envName: 'server',
             }
           }
         },

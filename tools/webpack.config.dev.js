@@ -9,7 +9,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: 'inline-source-map',
+  mode: 'development',
   context: path.resolve(__dirname, '..'),
   entry: {
     app: [
@@ -35,7 +35,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            forceEnv: 'client',
+            envName: 'client',
           }
         },
       },
@@ -112,16 +112,12 @@ module.exports = {
     extensions: ['.js', '.json', '.scss'],
   },
   plugins: [
-    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: '../dist/server/homeDev.hbs', //与server.dev emit事件对应
       template: './server/views/home.hbs',
       inject: true,
       hash: false,
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-    }),
+    })
   ]
 };

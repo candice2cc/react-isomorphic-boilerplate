@@ -8,18 +8,9 @@ import {
   Link,
   Redirect,
 } from 'react-router-dom';
-import Loadable from 'react-loadable';
 import TestContainer from "./test/containers/TestContainer";
 
-// 基于react-loadable 做code split,动态加载component
-const LoadableHello2Component = Loadable({
-  loader: () => import('./test/components/Hello2Component'),
-  loading: () => null,
-});
-const LoadableTestContainer = Loadable({
-  loader: () => import('./test/containers/TestContainer'),
-  loading: () => null,
-});
+
 
 const RootComponent = () => (
   <div>
@@ -37,9 +28,7 @@ const RootComponent = () => (
     </ul>
     <hr/>
     <Route exact path="/" render={() => <Redirect to="/home"/>}/>
-    <Route exact path="/home" component={TestContainer}/>}/>
-    <Route path="/test" component={LoadableTestContainer}/>
-    <Route path="/h2" component={LoadableHello2Component}/>
+    <Route exact path="/home" component={TestContainer}/>
   </div>
 );
 export default RootComponent;
