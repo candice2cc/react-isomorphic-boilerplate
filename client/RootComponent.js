@@ -37,7 +37,7 @@ const RootComponent = () => (
     </ul>
     <hr/>
     <Route exact path="/" render={() => <Redirect to="/home"/>}/>
-    <Route exact path="/home" component={TestContainer}/>}/>
+    <Route exact path="/home" component={TestContainer}/>
     <Route path="/test" component={LoadableTestContainer}/>
     <Route path="/h2" component={LoadableHello2Component}/>
   </div>

@@ -13,7 +13,16 @@ module.exports = {
   context: path.resolve(__dirname, '..'),
   entry: {
     app: [
-      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
+      'react-hot-loader/patch',
+      // activate HMR for React
+
+      'webpack-dev-server/client?http://localhost:9000',
+      // bundle the client for webpack-dev-server
+      // and connect to the provided endpoint
+
+      'webpack/hot/only-dev-server',
+      // bundle the client for hot reloading
+      // only- means to only hot reload for successful updates
       './client',
     ],
     vendor: [
@@ -25,7 +34,20 @@ module.exports = {
     path: path.resolve(__dirname, '../dist/client'),
     filename: 'js/[name].js',
     chunkFilename: 'js/chunk.[name].js',
-    publicPath: '/public/'
+    publicPath: '/'
+  },
+  devServer: {
+    // match the output path
+    contentBase: path.resolve(__dirname, '../dist/client'),
+    port: 9000,
+    hot: true,
+    // match the output `publicPath`
+    publicPath: '/',
+    historyApiFallback: true,
+    proxy: {
+      '/ws': 'http://localhost:9190/',
+    },
+
   },
   module: {
     rules: [
@@ -115,9 +137,10 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      filename: '../dist/server/homeDev.hbs', //与server.dev emit事件对应
-      template: './server/views/home.hbs',
+      filename: 'index.html',
+      template: './client/index.html',
       inject: true,
+      favicon: './client/favicon.ico',
       hash: false,
     }),
     new webpack.optimize.CommonsChunkPlugin({

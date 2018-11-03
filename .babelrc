@@ -20,11 +20,7 @@
         "transform-class-properties",
         "transform-export-extensions",
         "transform-object-rest-spread",
-        "syntax-dynamic-import",
-        ["import-inspector", {
-          "serverSideRequirePath": true,
-          "webpackRequireWeakId": true
-        }]
+        "syntax-dynamic-import"
       ]
     },
     "server": {

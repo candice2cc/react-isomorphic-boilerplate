@@ -151,6 +151,7 @@ module.exports = [
         filename: path.resolve(__dirname, '../dist/server/homeProd.hbs'),
         template: './server/views/home.hbs',
         inject: true,
+        favicon: './client/favicon.ico',
         hash: false,
 
       }),
@@ -180,7 +181,8 @@ module.exports = [
     target: 'node',
     node: {
       __filename: true,
-      __dirname: true
+      __dirname: true,
+      process: true
     },
     externals: [nodeExternals()],
     module: {
@@ -203,8 +205,7 @@ module.exports = [
               options: {
                 modules: true,
                 importLoaders: 1,
-                // localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
-                localIdentName: '[local]___[hash:base64:5]'
+                 localIdentName: '[name]__[local]___[hash:base64:5]'
               }
             },
             {
@@ -229,12 +230,12 @@ module.exports = [
       extensions: ['.js', '.json', '.scss'],
     },
     plugins: [
-      new CleanWebpackPlugin([path.resolve(__dirname, '../dist/server')], {root: path.join(__dirname, '../')}),
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify('production')
-        },
+      new CleanWebpackPlugin([path.resolve(__dirname, '../dist/server')], {
+        root: path.join(__dirname, '../')
       }),
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      })
     ]
   }
 ];

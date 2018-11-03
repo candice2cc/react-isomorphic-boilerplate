@@ -6,15 +6,18 @@
   "author": "Candice",
   "license": "MIT",
   "scripts": {
-    "dev": "better-npm-run dev",
     "build": "better-npm-run build",
-    "start": "better-npm-run start"
+    "start": "better-npm-run start",
+    "dev-client": "better-npm-run dev-client",
+    "dev-server": "better-npm-run dev-server"
   },
   "betterScripts": {
     "start": {
       "command": "node ./dist/server/app.js",
       "env": {
-        "NODE_ENV": "production"
+        "NODE_ENV": "production",
+        "PORT": "9191",
+        "CONFIG_ENV": "production"
       }
     },
     "build": {
@@ -23,11 +26,20 @@
         "NODE_ENV": "production"
       }
     },
-    "dev": {
-      "command": "nodemon ./server/server.dev.js --watch server --watch tools",
+    "dev-server": {
+      "command": "nodemon ./server/server.dev.js --exec babel-node --watch server",
       "env": {
         "NODE_ENV": "development",
-        "BABEL_ENV": "server"
+        "BABEL_ENV": "server",
+        "PORT": "9190",
+        "CONFIG_ENV": "development"
+      }
+    },
+    "dev-client": {
+      "command": "webpack-dev-server --config ./tools/webpack.config.dev.js",
+      "env": {
+        "NODE_ENV": "development",
+        "BABEL_ENV": "client"
       }
     }
   },
@@ -62,7 +74,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.9.0",
     "nodemon": "^1.17.5",
     "postcss-loader": "^2.1.5",
@@ -72,6 +84,7 @@
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "3.8.1",
     "webpack-dev-middleware": "^2.0.0",
+    "webpack-dev-server": "^2.9.4",
     "webpack-hot-middleware": "^2.22.2",
     "webpack-manifest-plugin": "^2.0.3",
     "webpack-node-externals": "^1.7.2"
@@ -81,6 +94,7 @@
     "better-npm-run": "^0.1.0",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
+    "http-proxy-middleware": "^0.19.0",
     "import-inspector": "^2.0.0",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
@@ -92,6 +106,8 @@
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "winston": "^3.1.0",
+    "winston-daily-rotate-file": "^3.4.1"
   }
 }

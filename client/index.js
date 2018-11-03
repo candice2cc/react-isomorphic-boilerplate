@@ -9,6 +9,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
+import 'babel-polyfill';
+
 import configureStore from './redux/store';
 import RootComponent from './RootComponent';
 
