@@ -4,14 +4,12 @@
  */
 
 import React from 'react';
-import testImg from '../img/test.jpg';
-import smImg from '../img/test_sm.png';
+import mcImg from '../img/mc.png';
 
 const Hello2Component = () => (
   <div>
-    <h2>Hello, Component2</h2>
-    <img src={smImg}/>
-    <img src={testImg}/>
+    <h2>Hello, Component2,MC</h2>
+    <img src={mcImg}/>
   </div>
 );
 

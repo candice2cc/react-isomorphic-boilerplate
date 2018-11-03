@@ -11,7 +11,7 @@ import styles from '../sass/HelloComponent.scss';
 
 const HelloComponent = () => (
   <div styleName="hello">
-    <h2>Hello, Component!!!123</h2>
+    <h2>Hello, Component</h2>
     <img src={modalImg}/>
   </div>
 );
