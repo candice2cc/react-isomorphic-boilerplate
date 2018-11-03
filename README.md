@@ -33,3 +33,7 @@ pm2 start process.json
 pm2 start process.json --env production
 ```
 
+### 注意事项
+- 移动端尽量使用体积小的库
+- 考虑兼容性
+- 性能压测
