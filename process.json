@@ -1,0 +1,20 @@
+{
+  "apps": [
+    {
+      "name": "react-isomorphic-boilerplate",
+      "script": "./dist/server/app.js",
+      "instances": 4,
+      "exec_mode": "cluster",
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": "9190",
+        "CONFIG_ENV": "development"
+      },
+      "env_production": {
+        "NODE_ENV": "production",
+        "PORT": "9191",
+        "CONFIG_ENV": "production"
+      }
+    }
+  ]
+}
