@@ -20,7 +20,14 @@
         "transform-class-properties",
         "transform-export-extensions",
         "transform-object-rest-spread",
-        "syntax-dynamic-import"
+        "syntax-dynamic-import",
+        [
+          "import",
+          {
+            "libraryName": "antd-mobile",
+            "style": "css"
+          }
+        ]
       ]
     },
     "server": {
@@ -40,10 +47,13 @@
         "transform-export-extensions",
         "transform-object-rest-spread",
         "syntax-dynamic-import",
-        ["import-inspector", {
-          "serverSideRequirePath": true,
-          "webpackRequireWeakId": true
-        }]
+        [
+          "import-inspector",
+          {
+            "serverSideRequirePath": true,
+            "webpackRequireWeakId": true
+          }
+        ]
       ]
     }
   }

@@ -82,6 +82,18 @@ module.exports = {
         ],
       },
       {
+        test: /\.css/,
+        include: /node_modules/,
+        use: [
+          {
+            loader: 'style-loader', // creates style nodes from JS strings
+          },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+          },
+        ],
+      },
+      {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
         use: [
           {

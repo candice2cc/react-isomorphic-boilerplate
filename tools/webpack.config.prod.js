@@ -74,6 +74,19 @@ module.exports = [
           }),
         },
         {
+          test: /\.css/,
+          include: /node_modules/,
+          use: extractSass.extract({
+            use: [
+              {
+                loader: 'css-loader',
+              }
+            ],
+            // use style-loader in development
+            fallback: 'style-loader',
+          }),
+        },
+        {
           test: /\.(png|svg|jpg|jpeg|gif)$/,
           use: [
             {
@@ -205,7 +218,7 @@ module.exports = [
               options: {
                 modules: true,
                 importLoaders: 1,
-                 localIdentName: '[name]__[local]___[hash:base64:5]'
+                localIdentName: '[name]__[local]___[hash:base64:5]'
               }
             },
             {
