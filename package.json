@@ -6,12 +6,22 @@
   "author": "Candice",
   "license": "MIT",
   "scripts": {
+    "dev": "better-npm-run dev",
     "build": "better-npm-run build",
     "start": "better-npm-run start",
     "dev-client": "better-npm-run dev-client",
     "dev-server": "better-npm-run dev-server"
   },
   "betterScripts": {
+    "dev": {
+      "command": "nodemon ./server/babel.js --watch server --watch tools",
+      "env": {
+        "NODE_ENV": "development",
+        "BABEL_ENV": "server",
+        "PORT": "9190",
+        "CONFIG_ENV": "development"
+      }
+    },
     "start": {
       "command": "node ./dist/server/app.js",
       "env": {
@@ -24,22 +34,6 @@
       "command": "webpack --config ./tools/webpack.config.prod.js --progress",
       "env": {
         "NODE_ENV": "production"
-      }
-    },
-    "dev-server": {
-      "command": "nodemon ./server/server.dev.js --exec babel-node --watch server",
-      "env": {
-        "NODE_ENV": "development",
-        "BABEL_ENV": "server",
-        "PORT": "9190",
-        "CONFIG_ENV": "development"
-      }
-    },
-    "dev-client": {
-      "command": "webpack-dev-server --config ./tools/webpack.config.dev.js",
-      "env": {
-        "NODE_ENV": "development",
-        "BABEL_ENV": "client"
       }
     }
   },

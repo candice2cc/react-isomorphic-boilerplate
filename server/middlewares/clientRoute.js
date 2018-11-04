@@ -11,8 +11,8 @@ import {Provider} from 'react-redux';
 import configureStore from '../../client/redux/store';
 import RootComponent from '../../client/RootComponent';
 
-// const store = configureStore({counter:{count:4}});
-const store = configureStore();
+const store = configureStore({counter:{count:4}});
+// const store = configureStore();
 
 export const clientRoute = (viewName) => {
   return (req, res) => {
