@@ -13,6 +13,7 @@ import HelloComponent from "./test/components/HelloComponent";
 import Hello2Component from "./test/components/Hello2Component";
 import Hello3Component from "./test/components/Hello3Component";
 import AntComponent from "./test/components/AntComponent";
+import IntlComponent from "./test/components/IntlComponent";
 
 // 基于react-loadable 做code split,动态加载component
 const LoadableCountContainer = Loadable({
@@ -22,6 +23,7 @@ const LoadableCountContainer = Loadable({
 
 
 const RootComponent = () => (
+
   <div>
     <h2>React Test</h2>
     <ul>
@@ -40,6 +42,9 @@ const RootComponent = () => (
       <li>
         <Link to="/btn">Ant button</Link>
       </li>
+      <li>
+        <Link to="/intl">Intl</Link>
+      </li>
     </ul>
     <hr/>
     <Route exact path="/" render={() => <Redirect to="/h1"/>}/>
@@ -48,6 +53,7 @@ const RootComponent = () => (
     <Route path="/h3" component={Hello3Component}/>
     <Route path="/count" component={LoadableCountContainer}/>
     <Route path="/btn" component={AntComponent}/>
+    <Route path="/intl" component={IntlComponent}/>
   </div>
 );
 export default RootComponent;

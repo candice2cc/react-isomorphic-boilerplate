@@ -58,9 +58,13 @@ app.set('view engine', '.hbs');
 useApp(app);
 
 app.use((req, res) => {
+  const {locale, messages, localeData} = res.locals;
   res.render('homeDev', {
     html: null,
-    preloadedState: JSON.stringify(store.getState()).replace(/</g, '\\u003c')
+    preloadedState: JSON.stringify(store.getState()).replace(/</g, '\\u003c'),
+    locale,
+    localeData,
+    messages: JSON.stringify(messages).replace(/</g, '\\u003c'),
   })
 });
 
